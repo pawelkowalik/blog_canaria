@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+    <!-- Main -->
+		<div id="main">
+			<div class="container">
+				<div class="row">
+
+					<!-- Content -->
+					<div id="content" class="12u skel-cell-important">
+						<section>
+							<header>
+								<h2>{{ news.title }}</h2>
+								<span class="byline">{{ news.posted_date|date:" d.m.Y " }}</span>
+							</header>
+							<a href="{{ STATIC_URL|cut:"static/" }}{{news.picture|cut:"blog/" }}" data-lightbox="image-1" class="image full"><img src="{{ STATIC_URL|cut:"static/" }}{{ news.picture|cut:"blog/" }}" alt="" /></a>
+							<a name="content"></a>
+                            <p>{{ news.text|safe }}</p>
+                            {% for image in news.pictures.all %}
+            <a href="{{ STATIC_URL|cut:"static/" }}{{image|cut:"blog/" }}" data-lightbox="image-1" data-title="{{ image.title }} - zdjęcie z {{ image.date }}" class="image">
+            <img src="{{ STATIC_URL|cut:"static/" }}{{image|cut:"blog/" }}" alt="" height="120"/></a>&nbsp
+        {% endfor %}
+                            <a name="comments"></a>
+                        <br><br><b>Komentarze:</b><br><ol>
+		{% for note in news.notetopost_set.all %}
+			<li><p><b>{{ note.author }}</b> - {{ note.posted_date|date:" H:i " }}, {{ note.posted_date|date:"d E Y "}}
+			<br> {{ note.text }} </p></li>
+        {% empty %}
+			Nie dodano jeszcze komentarzy
+		{% endfor %}</ol><br>
+	<form method="post" class="form-horizontal" role="form">
+		{% csrf_token %}
+		<div class="form-group">
+			<div>
+				Treść:<br>
+                <textaera>{{ form.text }}</textaera>
+				{% for error in form.text.errors %}
+					{{ error }}
+				{%  endfor %}
+			</div>
+			<div>
+				Autor:<br>
+                {{ form.author }}
+				{% for error in form.author.errors %}
+					{{ error }}
+				{%  endfor %}
+			</div>
+			<div>
+				<input id="id_post_id" value="{{ news.id }}" name="post_id" hidden="hidden"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<br><button type="submit" class="btn btn-default">Dodaj komentarz</button>
+			</div>
+		</div>
+</form>
+						</section>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+{% block content %}
+<!-- === BEGIN CONTENT === -->
+            <div id="content">
+                <div class="container background-white">
+                    <div class="row margin-vert-30">
+                        <!-- Main Column -->
+                        <div class="col-md-12">
+                            <div class="blog-post">
+                                <div class="blog-item-header">
+                                    <h2>
+                                            {{ news.title }}
+                                    </h2>
+                                </div>
+                                <div class="blog-post-details">
+                                    <!-- Author Name -->
+                                    <div class="blog-post-details-item blog-post-details-item-left user-icon">
+                                        <i class="fa fa-user color-gray-light"></i>
+                                        {{ news.author.first_name }}
+                                    </div>
+                                    <!-- End Author Name -->
+                                    <!-- Date -->
+                                    <div class="blog-post-details-item blog-post-details-item-left">
+                                        <i class="fa fa-calendar color-gray-light"></i>
+                                        {{ news.posted_date|date:"d E Y " }}
+                                    </div>
+                                    <!-- End Date -->
+                                    <!-- # of Comments -->
+                                    <div class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last">
+                                            <i class="fa fa-comments color-gray-light"></i>
+                                            Komentarze: ({{ news.notetopost_set.all.count }})
+                                    </div>
+                                    <!-- End # of Comments -->
+                                </div>
+                                <div class="blog-item">
+                                    <div class="clearfix"></div>
+                                    <div class="blog-post-body row margin-top-15">
+                                        <div class="col-md-5">
+                                            <img src="{{ STATIC_URL|cut:"static/" }}{{ news.picture|cut:"blog/" }}" width="400" alt="" />
+                                        </div>
+                                        <div class="col-md-7">
+                                            <p>
+                                                {{ news.text|safe }}</p>
+                                            <br>
+                                        </div>
+                                        <div class="col-md-12"><br><br>
+                                            {% for image in news.pictures.all %}
+                                                <a href="{{ STATIC_URL|cut:"static/" }}{{image|cut:"blog/" }}" data-lightbox="image-1" data-title="{{ image.title }} - zdjęcie z {{ image.date }}" class="image">
+                                                <img src="{{ STATIC_URL|cut:"static/" }}{{image|cut:"blog/" }}" alt="" height="120"/></a>&nbsp
+                                            {% endfor %}
+                                        <br><br>
+                                        </div>
+                                    </div>
+                                    <div class="blog-item-footer">
+                                        <!-- Comments -->
+                                        <div class="blog-recent-comments panel panel-default margin-bottom-30">
+                                            <div class="panel-heading">
+                                                <h3>Komentarze</h3>
+                                            </div>
+                                            <ul class="list-group">
+                                            {% for note in news.notetopost_set.all %}
+                                                <li class="list-group-item">
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <h4>{{ note.author }}</h4>
+                                                            <p>{{ note.text }}</p>
+                                                            <span class="date">
+                                                                <i class="fa fa-clock-o color-gray-light"></i>&nbsp;{{ note.posted_date|date:" H:i " }}, {{ note.posted_date|date:"d E Y "}}</span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                {% empty %}
+                                                    <li class="list-group-item">
+                                                        <div class="row">
+                                                            <div class="col-md-8">
+                                                                Nie dodano jeszcze komentarzy
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                            {% endfor %}
+                                                <!-- Comment Form -->
+                                                <li class="list-group-item">
+                                                    <div class="blog-comment-form">
+                                                        <div class="row margin-top-20">
+                                                            <div class="col-md-12">
+                                                                <div class="pull-left">
+                                                                    <h3>Zostaw komentarz</h3>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row margin-top-20">
+                                                            <div class="col-md-12">
+                                                                <form method="post" class="form-horizontal" role="form">
+                                                                    {% csrf_token %}
+                                                                    <label>Autor</label>
+                                                                    <div class="row margin-bottom-20">
+                                                                        <div class="col-md-7 col-md-offset-0">
+                                                                            {{ form.author }}
+                                                                            {% for error in form.author.errors %}
+                                                                                {{ error }}
+                                                                            {%  endfor %}
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <label>Komentarz</label>
+                                                                    <div class="row margin-bottom-20">
+                                                                        <div class="col-md-11 col-md-offset-0">
+                                                                            <textaera>{{ form.text }}</textaera>
+                                                                            {% for error in form.text.errors %}
+                                                                                {{ error }}
+                                                                            {%  endfor %}
+                                                                        </div>
+                                                                        <div>
+                                                                            <input id="id_post_id" value="{{ news.id }}" name="post_id" hidden="hidden"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p>
+                                                                        <button class="btn btn-primary" type="submit">Wyślij</button>
+                                                                    </p>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <!-- End Comment Form -->
+                                            </ul>
+                                        </div>
+                                        <!-- End Comments -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Blog Post -->
+                        </div>
+                        <!-- End Main Column -->
+                    </div>
+                </div>
+            </div>
+            <!-- === END CONTENT === -->
+{% endblock %}

@@ -1,0 +1,115 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+
+		<title>Wczasy na Krecie</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href='http://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="{% static 'js/skel.min.js' %}"></script>
+		<script src="{% static 'js/skel-panels.min.js' %}"></script>
+		<script src="{% static 'js/init.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/skel-noscript.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/style-desktop.css' %}" />
+        <link href="{% static 'lightbox/lightbox.css' %}" rel="stylesheet">
+
+
+
+	</head>
+	<body class="homepage">
+
+		<!-- Header -->
+		<div id="header">
+			<div class="container">
+
+				<!-- Logo -->
+				<div id="logo">
+					<h1><a href="{% url "news-list" %}">Podróż na Kretę</a></h1>
+					<span>Czyli Kasia i Paweł na wakacjach</span>
+				</div>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="{% url "news-list" %}#content">Homepage</a></li>
+                        <li><a href="{% url "news-list" %}#posts">Ostatnie posty</a></li>
+						<li><a href="{% url "image-list" %}">Wszystkie zdjęcia</a></li>
+						<li><a href="{% url "archieve-feed" %}">RSS</a></li>
+
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+		<!-- Main -->
+		<div id="main">
+        	<div class="container">
+				<div class="row">
+
+					<!-- Content -->
+					<div id="content" class="8u skel-cell-important">
+						<section>
+							<header>
+                                <a name="content"></a>
+								<h2>Witamy na naszym blogu!</h2>
+								<span class="byline">Podróż na Kretę 11-18 października 2015</span>
+							</header>
+							<a href="{% static 'images/chania_big-en.gif' %}" data-lightbox="image-1" class="image full"><img src="{% static 'images/chania_big-en.gif' %}" alt="" /></a>
+							<p>11 października anno domini 2015 dostaliśmy w końcu wymarzony urlop i wybraliśmy się na Kretę, a dokładniej na jej zachodnią część - do okręgu miasta Chania.
+                            Na blogu będziemy dzielić się codziennie wrażeniami i zdjęciami tak, żeby nic nam nie umknęło po powrocie.<br><br>
+                            Krótka historia wyspy:<br>
+                            <p>Historia kultury Krety sięga czasów neolitu. Początki osadnictwa człowieka na Krecie to lata 6000-3000 przed naszą erą. W tym okresie ludzie mieszkali głównie w domach zbudowanych z kamienia i zajmowali się hodowlą bydła oraz uprawą roli. W 3000 roku p.n.e. rozpoczyna się okres przedpałacowy trwajacy do 2100 r.p.n.e. W tym okresie powstaje min.: budownictwo z cegieł, proste narzędzia z brązu, koło garncarskie.
+                                Okres do roku 1500 p.n.e. zwany minojskim to największy rozkwit kultury Kreteńskiej a jednocześnie początek kultury europejskiej. W okresie monojskim powstają na Krecie pałace w Knossos, Fajstos oraz Malli, rozwija się handel w basenie morza śródziemnego.</p>
+                            <p>Kultura kreteńska z tego okresu to bogate zdobienia pałaców, malowidła, biżuteria ze złota oraz pismo linearne. Kres złotego okresu nadszedł wraz z nadejściem katastrof naturalnych. Wybuch wulkanu na wyspie Thira (obecnie Santorioni) doprowadził do powstania fali tsunami o wysokości 40-80 metrów, które w połączeniu z trzęsieniami ziemi doprowadziły do ruiny całą wyspę. Osłabioną Kretę napadli Mekończycy, ostatecznie niszcząc wszystkie pałace. Można przyjąć że od tego czasu Kreta należy do Grecji. Jednak nie ma żadnego wpływu i nie jest zaangażowana na politykę kontynentalną ze względu na walki wewnętrzne własnych miast-państw.
+                            W 67 r.p.n.e. wyspę zdobywają Rzymianie pod wodzą Kwintusa Cecyliusa Metallusa zwanego Creticus. Od III w.n.e rozpoczyna się panowanie Cesarstwa Bizantyjskiego na wyspie.</p>
+                            <p>W IX wieku wyspa dostała się pod panowanie arabskie (mauretańskich Saracenów), które trwało około 50 lat. W XIII wieku pod panowanie weneckie, które trwało aż do roku 1669, w którym wyspę zdobyli Turcy.
+                            W 1670 roku miało miejsce powstanie Kreteńskie, jednak już w rok później Turcy odzyskali panowanie nad wyspą. Do kolejnych walk doszło w latach 20-tych XVIII wieku. Wojska tureckie spustoszyły najbardziej urodzajny płaskowyż Lassithi i dokonały rzezi ludności cywilnej. W latach 1820 do 1844 wyspa należała do Egiptu. W 1869 roku Turcy krwawo stłumili kolejne powstanie.
+                            W 1898 roku po kolejnym zrywie narodowym, Kreta stała się autonomiczną republiką, jednak pod protektoratem Imperium Osmańskiego (dalej Turcja). W 1908 roku Kreta ogłosiła niepodległość, która nie została uznana na arenie międzynarodowej. W 1913 roku włączona do Grecji.</p>
+                            <p>W trakcie II Wojny Światowej na Krecie toczyły się zażarte walki z niemiecką armią. 20 maja 1941 roku ma miejsce największy jak do tej pory powietrzno-desantowy atak na wyspę. W ataku pod kryptonimem Merkury na wyspie wylądowało 25 000 żołnierzy niemieckich - głównie spadochroniarzy. Niemcy napotkali na silny opór sił brytyjskich stacjonujących na wyspie po ewakuacji z kontynentu. Flota brytyjska niszczyła morskie oddziały inwazyjne przez co Niemcy zostali odcięci od zaopatrzenia. Błędnie oceniając sytuację Brytyjczycy podjęli decyzję o poddaniu wyspy i ewakuowali się z zatoki Suda w pobliżu Chanii. W walkach brali udział mieszkańcy Krety, którzy walczyli z niemieckim najeźdźcą głównie białą bronią. Była to walka noży i łopat przeciwko karabinom, ale dzięki odwadze Kreteńczyków oddziały brytyjskie mogły się ewakuować z wyspy.</p>
+
+                        </section>
+					</div>
+
+					<!-- Sidebar -->
+
+					{% block content %}
+                    {% endblock %}
+				</div>
+			</div>
+		</div>
+
+<!-- Footer -->
+        <a name="posts"></a>
+		<div id="footer">
+			<div class="container">
+				<div class="row">
+					<div class="4u">
+						<section>
+							<h2>Ostatnie posty:</h2>
+							<ul class="default">
+                                {% for entry in all_news %}
+								<li><a href="{% url "news-detail" entry.slug %}">{{ entry.title }} - {{ entry.posted_date }}</a></li>
+								{% endfor %}
+							</ul>
+						</section>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- Copyright -->
+		<div id="copyright">
+			<div class="container">
+				All Rights Reserved. Paweł Kowalik, 2015
+			</div>
+		</div>
+<script src="{% static 'lightbox/lightbox-plus-jquery.js' %}"></script>
+	</body>
+</html>

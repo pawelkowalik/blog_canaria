@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Main -->
+		<div id="main">
+			<div class="container">
+				<div class="row">
+
+					<!-- Content -->
+					<div id="content" class="12u skel-cell-important">
+						<section>
+							<header>
+								<h2>Galeria zdjec</h2>
+                                <ul><center>
+    {% for image in image_list %}
+        {% ifchanged %}
+            <br><br><li><p>{{ image.date }}</p></li>
+        {% endifchanged %}
+            <a href="{{ STATIC_URL|cut:"static/" }}{{image|cut:"blog/" }}" data-lightbox="image" data-title="{{ image.title }} - zdjęcie z {{ image.date }}" class="image">
+            <img src="{{ STATIC_URL|cut:"static/" }}{{image|cut:"blog/" }}" height=120 alt="" data-lightbox="image-1" /></a>
+{% endfor %}
+    </center></ul>
+
+
+							</header>
+
+
+						</section>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+{% endblock %}
+
+
